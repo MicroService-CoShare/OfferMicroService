@@ -9,15 +9,30 @@ import tn.esprit.cosharemshoussem.Entities.Offer;
 import tn.esprit.cosharemshoussem.Repositories.OfferRepository;
 import tn.esprit.cosharemshoussem.Services.OfferService;
 
-@RestController
+import javax.annotation.security.RolesAllowed;
 
+@RestController
 public class OfferController {
     private String title="hello , im the product microservice";
 
     @Autowired
     private OfferService offerService;
+
     @RequestMapping("/hello")
+    @RolesAllowed("ADMIN")
     public String sayHello(){
+        System.out.println(title);
+        return title;
+    }
+    @RequestMapping("/hello2")
+    @RolesAllowed("admin")
+    public String sayHelloo(){
+        System.out.println(title);
+        return title;
+    }
+    @RequestMapping("/hello3")
+    @RolesAllowed("ROLE_ADMIN")
+    public String sayHellooo(){
         System.out.println(title);
         return title;
     }
